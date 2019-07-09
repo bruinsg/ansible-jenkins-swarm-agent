@@ -16,7 +16,9 @@ ExecStart=/usr/bin/java \
 {% if jenkins_agent_username is defined %}
   -username '{{ jenkins_agent_username }}' \
 {% endif %}
-{% if jenkins_agent_password is defined %}
+{% if jenkins_agent_password_file is defined %}
+  -password '@{{ jenkins_agent_password_file }}' \
+{% elif jenkins_agent_password is defined %}
   -password '{{ jenkins_agent_password }}' \
 {% endif %}
   -name '{{ jenkins_agent_name }}' \

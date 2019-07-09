@@ -47,6 +47,9 @@ USERNAME=${SWARM_USERNAME:=""}
 # The password to use when connecting to the master
 PASSWORD=${SWARM_PASSWORD:=""}
 
+# The file in which to store the password to use when connecting to the master
+PASSWORD_FILE=${SWARM_PASSWORD_FILE:=""}
+
 # The name of this slave
 NAME=${NAME:="$(hostname)"}
 
@@ -94,7 +97,9 @@ start() {
     cmd="${cmd} -username '${USERNAME}'"
   fi
 
-  if [[ -n "${PASSWORD}" ]]; then
+  if [[ -n "${PASSWORD_FILE}" ]]; then
+    cmd="${cmd} -password '@${PASSWORD_FILE}'"
+  elif [[ -n "${PASSWORD}" ]]; then
     cmd="${cmd} -password '${PASSWORD}'"
   fi
 
