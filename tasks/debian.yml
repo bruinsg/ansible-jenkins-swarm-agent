@@ -70,7 +70,7 @@
   file:
     path: "{{ jenkins_agent_password_file }}"
     state: touch
-    mode: 0400
+    mode: '0400'
   become: true
   when: jenkins_agent_password_file is defined
   notify: Restart Swarm Client service
