@@ -7,10 +7,36 @@
     state: present
   ignore_errors: yes
 
+- name: Install .Net 3.5 for Jenkins Service Wrapper
+  ansible.windows.win_optional_feature:
+    name: NetFx3
+    state: present
+  become: yes
+  become_user: System
+  become_method: runas
+
 - name: Create Swarm directory
   win_file:
     path: "{{ win_base_jenkins_path }}"
     state: directory
+
+- name: "Ensure {{ jenkins_agent_password_file }} file exists"
+  win_file:
+    path: "{{ jenkins_agent_password_file }}"
+    state: touch
+  when: jenkins_agent_password_file is defined
+  notify: Restart Swarm Windows service
+
+- name: Ensure {{ jenkins_agent_password_file }} contains defined password
+  win_lineinfile:
+    path: "{{ jenkins_agent_password_file }}"
+    line: "{{ jenkins_agent_password }}"
+  when: 
+    - jenkins_agent_password_file is defined
+    - jenkins_agent_password is defined
+  notify: Restart Swarm Windows service
+  tags:
+    - config
 
 - name: Download the Jenkins Swarm Client
   win_get_url:

@@ -20,6 +20,10 @@
   win_shell: "{{ win_swarm_client_wrapper_path }} install"
   notify: Start the Jenkins service
 
+- name: Restart Swarm Windows service
+  win_shell: "{{ win_swarm_client_wrapper_path }} restart"
+  notify: Start the Jenkins service
+
 - name: Start the Jenkins service
   win_service:
     name: "{{ jenkins_swarm_task_name }}"
