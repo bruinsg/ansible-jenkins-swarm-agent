@@ -6,8 +6,8 @@ jenkins_agent_username: sa_swarm_agent
 jenkins_agent_password: "{{ lookup('password', '../credentials/{{ inventory_hostname }}/jenkins-agent/agent-password.txt') }}"
 jenkins_agent_password_file: "{{ jenkins_swarm_path }}/password.swarm"
 jenkins_agent_name: "{{ inventory_hostname }}"
-jenkins_agent_num_executors: "{{ ansible_processor_cores|default(1)*2 }}"
-jenkins_agent_labels: "{{ (ansible_os_family|lower() == 'windows')|ternary('windows', 'linux') }}"
+jenkins_agent_num_executors: "{{ ansible_processor_cores | default(1) * 2 }}"
+jenkins_agent_labels: "{{ (ansible_os_family | lower() == 'windows') | ternary('windows', 'linux') }}"
 jenkins_agent_labels_file: "{{ jenkins_swarm_path }}/labels.swarm"
 jenkins_agent_log_file: "{{ jenkins_swarm_path }}/swarm.log"
 jenkins_agent_additional_args:
@@ -31,9 +31,9 @@ jenkins_swarm_service_name: swarm-client
 # Windows Vars
 version: 2.0.3
 jenkins_swarm_client_wrapper_version: 2.0.3
-jenkins_swarm_wrapper_download_url: "{{ jenkins_plugins_url}}/releases/com/sun/winsw/winsw/{{ jenkins_swarm_client_wrapper_version }}/winsw-{{jenkins_swarm_client_wrapper_version}}-bin.exe"
+jenkins_swarm_wrapper_download_url: "{{ jenkins_plugins_url }}/releases/com/sun/winsw/winsw/{{ jenkins_swarm_client_wrapper_version }}/winsw-{{ jenkins_swarm_client_wrapper_version }}-bin.exe"
 win_java_version: 8.0.144
 win_base_jenkins_path: "C:\\jenkins"
 win_swarm_client_jar_path: "{{ win_base_jenkins_path }}\\{{ jenkins_swarm_client_jar }}"
-win_swarm_client_wrapper_path: "{{ win_base_jenkins_path }}\\{{ jenkins_swarm_client_jar|replace('.jar', '.exe') }}"
-win_swarm_client_wrapper_config_path: "{{ win_base_jenkins_path }}\\{{ jenkins_swarm_client_jar|replace('.jar', '.xml') }}"
+win_swarm_client_wrapper_path: "{{ win_base_jenkins_path }}\\{{ jenkins_swarm_client_jar | replace('.jar', '.exe') }}"
+win_swarm_client_wrapper_config_path: "{{ win_base_jenkins_path }}\\{{ jenkins_swarm_client_jar | replace('.jar', '.xml') }}"

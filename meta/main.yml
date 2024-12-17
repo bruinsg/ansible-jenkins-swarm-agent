@@ -1,25 +1,26 @@
----
 galaxy_info:
-  author: Nic Patterson & Chris O'Brian & Wojciech Urbański
+  author: Nic Patterson & Chris O'Brian & Wojciech Urbański & Peter Bruin
   description: Provision a Jenkins Swarm agent
   license: BSD
-  min_ansible_version: 2.2
+  min_ansible_version: '2.2'
   platforms:
     - name: EL
       versions:
-      - 6
-      - 7
+        - '6'
+        - '7'
     - name: Debian
       versions:
-      - jessie
-      - wheezy
+        - jessie
+        - wheezy
+        - bookworm
     - name: Ubuntu
       versions:
-      - xenial
-      - yakkety
+        - xenial
+        - yakkety
+        - noble
     - name: Windows
-      versions: 
-      - 2012R2
+      versions:
+        - 2012R2
   galaxy_tags:
     - development
     - system
