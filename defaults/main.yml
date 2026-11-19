@@ -15,11 +15,11 @@ jenkins_agent_additional_args:
   - "-disableClientsUniqueId"
 
 # Swarm client url building
-jenkins_swarm_client_version: 3.6
+jenkins_swarm_client_version: 3.51
 jenkins_plugins_url: https://repo.jenkins-ci.org
 jenkins_plugins_repo_path: "releases/org/jenkins-ci/plugins/swarm-client/{{ jenkins_swarm_client_version }}"
-jenkins_swarm_client_jar: "swarm-client-{{ jenkins_swarm_client_version }}.jar"
-jenkins_swarm_download_url: "{{ jenkins_plugins_url }}/{{ jenkins_plugins_repo_path }}/{{ jenkins_swarm_client_jar }}"
+jenkins_swarm_client_jar: "swarm-client.jar"
+jenkins_swarm_download_url: "https://jenkins.bruin.sg//swarm/swarm-client.jar"
 
 # Linux Vars
 jenkins_swarm_path: /var/lib/jenkins
